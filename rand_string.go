@@ -14,7 +14,7 @@ const (
 	RST_SYMBOL_STR = "`~!@#$%^&*()-_=+[{]}\\|;:'\",<.>/?"
 )
 
-func String(count int, flag int) string {
+func String(length int, flag int) string {
 	str := ""
 	if flag == 0 {
 		str = RST_LOWER_STR + RST_UPPER_STR + RST_NUMBER_STR + RST_SYMBOL_STR
@@ -33,9 +33,13 @@ func String(count int, flag int) string {
 		}
 	}
 
+	return StringLib(length, &str)
+}
+
+func StringLib(length int, str *string) string {
 	_s := ""
-	for i := 0; i < count; i++ {
-		_s += string(str[g_rand.Intn(len(str))])
+	for i := 0; i < length; i++ {
+		_s += RangeString(str)
 	}
 	return _s
 }

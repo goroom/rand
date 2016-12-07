@@ -23,6 +23,7 @@ func TestRand(t *testing.T) {
 
 	t.Log(StringArray(&[]string{"张三", "李四", "王五", "赵六"}))
 	t.Log(CarPlate())
+	t.Log(CarPlateNewEnergy())
 	t.Log(ChineseName())
 
 	t.Log(RandPhone())
