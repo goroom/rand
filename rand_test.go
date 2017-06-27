@@ -26,6 +26,6 @@ func TestRand(t *testing.T) {
 	t.Log(CarPlateNewEnergy())
 	t.Log(ChineseName())
 
-	t.Log(RandPhone())
+	t.Log(Phone())
 
 }

@@ -6,6 +6,6 @@ var (
 		"187", "188"}
 )
 
-func RandPhone() string {
+func Phone() string {
 	return StringArray(&g_phone_prefix_list) + String(8, RST_NUMBER)
 }
