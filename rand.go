@@ -2,10 +2,12 @@ package rand
 
 import (
 	"math/rand"
+	"sync"
 	"time"
 )
 
 var (
+	gRand  sync.Mutex
 	g_rand *rand.Rand
 )
 
@@ -14,38 +16,56 @@ func init() {
 }
 
 func Int() int {
+	gRand.Lock()
+	defer gRand.Unlock()
 	return g_rand.Int()
 }
 
 func Intn(n int) int {
+	gRand.Lock()
+	defer gRand.Unlock()
 	return g_rand.Intn(n)
 }
 
 func Int32() int32 {
+	gRand.Lock()
+	defer gRand.Unlock()
 	return g_rand.Int31()
 }
 
 func Int32n(n int32) int32 {
+	gRand.Lock()
+	defer gRand.Unlock()
 	return g_rand.Int31n(n)
 }
 
 func Int64() int64 {
+	gRand.Lock()
+	defer gRand.Unlock()
 	return g_rand.Int63()
 }
 
 func Int64n(n int64) int64 {
+	gRand.Lock()
+	defer gRand.Unlock()
 	return g_rand.Int63n(n)
 }
 
 func Float32() float32 {
+	gRand.Lock()
+	defer gRand.Unlock()
 	return g_rand.Float32()
 }
 
 func Float64() float64 {
+	gRand.Lock()
+	defer gRand.Unlock()
 	return g_rand.Float64()
 }
 
 func Perm(count int) []int {
+	gRand.Lock()
+	defer gRand.Unlock()
 	return g_rand.Perm(count)
 }
 
@@ -75,6 +95,8 @@ func RandRangeInt64(min int64, max int64) int64 {
 }
 
 func Bool() bool {
+	gRand.Lock()
+	defer gRand.Unlock()
 	if g_rand.Intn(2) == 0 {
 		return true
 	}

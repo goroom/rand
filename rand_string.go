@@ -49,6 +49,8 @@ func StringArray(list *[]string) string {
 }
 
 func RangeString(s *string) string {
+	gRand.Lock()
+	defer gRand.Unlock()
 	str := []rune(*s)
 	index := g_rand.Intn(len(str))
 	return string(str[index])
