@@ -15,11 +15,11 @@ func init() {
 	PROVINCE_CODE_LENGTH = len(PROVINCE_CODE)
 }
 
-func CarPlate() string {
-	return string(PROVINCE_CODE[g_rand.Intn(PROVINCE_CODE_LENGTH)]) + String(1, RST_UPPER) + StringLib(5, &RCPTAIL_STR)
+func (r *Rand) CarPlate() string {
+	return string(PROVINCE_CODE[gRand.rand.Intn(PROVINCE_CODE_LENGTH)]) + r.String(1, RST_UPPER) + r.StringLib(5, &RCPTAIL_STR)
 }
 
 //新能源车牌 6位
-func CarPlateNewEnergy() string {
-	return string(PROVINCE_CODE[g_rand.Intn(PROVINCE_CODE_LENGTH)]) + String(1, RST_UPPER) + StringLib(6, &RCPTAIL_STR)
+func (r *Rand) CarPlateNewEnergy() string {
+	return string(PROVINCE_CODE[gRand.rand.Intn(PROVINCE_CODE_LENGTH)]) + r.String(1, RST_UPPER) + r.StringLib(6, &RCPTAIL_STR)
 }

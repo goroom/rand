@@ -8,50 +8,50 @@ const (
 )
 
 const (
-	RST_LOWER_STR  = "qwertyuiopasdfghjklzxcvbnm"
-	RST_UPPER_STR  = "QWERTYUIOPASDFGHJKLZXCVBNM"
-	RST_NUMBER_STR = "1234567890"
-	RST_SYMBOL_STR = "`~!@#$%^&*()-_=+[{]}\\|;:'\",<.>/?"
+	gcLowerString  = "qwertyuiopasdfghjklzxcvbnm"
+	gcUpperString  = "QWERTYUIOPASDFGHJKLZXCVBNM"
+	gcNumberString = "1234567890"
+	gcSymbolString = "`~!@#$%^&*()-_=+[{]}\\|;:'\",<.>/?"
 )
 
-func String(length int, flag int) string {
+func (r *Rand) String(length int, flag int) string {
 	str := ""
 	if flag == 0 {
-		str = RST_LOWER_STR + RST_UPPER_STR + RST_NUMBER_STR + RST_SYMBOL_STR
+		str = gcLowerString + gcUpperString + gcNumberString + gcSymbolString
 	} else {
 		if flag&RST_LOWER != 0 {
-			str += RST_LOWER_STR
+			str += gcLowerString
 		}
 		if flag&RST_UPPER != 0 {
-			str += RST_UPPER_STR
+			str += gcUpperString
 		}
 		if flag&RST_NUMBER != 0 {
-			str += RST_NUMBER_STR
+			str += gcNumberString
 		}
 		if flag&RST_SYMBOL != 0 {
-			str += RST_SYMBOL_STR
+			str += gcSymbolString
 		}
 	}
 
-	return StringLib(length, &str)
+	return r.StringLib(length, &str)
 }
 
-func StringLib(length int, str *string) string {
+func (r *Rand) StringLib(length int, str *string) string {
 	_s := ""
 	for i := 0; i < length; i++ {
-		_s += RangeString(str)
+		_s += r.RangeString(str)
 	}
 	return _s
 }
 
-func StringArray(list *[]string) string {
-	return (*list)[Intn(len(*list))]
+func (r *Rand) StringArray(list *[]string) string {
+	return (*list)[r.rand.Intn(len(*list))]
 }
 
-func RangeString(s *string) string {
+func (r *Rand) RangeString(s *string) string {
 	gRand.Lock()
 	defer gRand.Unlock()
 	str := []rune(*s)
-	index := g_rand.Intn(len(str))
+	index := gRand.rand.Intn(len(str))
 	return string(str[index])
 }
